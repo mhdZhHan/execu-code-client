@@ -1,0 +1,52 @@
+.container {
+    margin: 1% 0;
+    .title {
+        font-size: 2rem;
+        color: #000;
+        margin-bottom: 2rem;
+    }
+    .title_2 {
+        font-size: 1.9rem;
+        color: #000;
+        margin-bottom: 2rem;
+    }
+    .editor_container {
+        .editor_box {
+            outline: none;
+            border: .2rem solid #6e6b6b;
+            padding: .8rem;
+            font-size: 1.8rem;
+            font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+        }
+        .execute_button {
+            outline: none;
+            border: none;
+            background: yellow;
+            padding: .8rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            border-radius: .4rem;
+            cursor: pointer;
+            margin-bottom: 2rem;
+        }
+    }
+
+    .output_container {
+        margin-top: 1.5rem;
+        display: flex;
+        .output_box {
+            flex: 1;
+            border: .2rem solid #6e6b6b;
+            padding: .8rem;
+            font-size: 1.8rem;
+        }
+        .error_box {
+            flex: 1;
+            border: .2rem solid #6e6b6b;
+            padding: .8rem;
+            font-size: 1.8rem;
+            color: rgb(233, 20, 70);
+        }
+    }
+}
