@@ -10,6 +10,27 @@
         color: #000;
         margin-bottom: 2rem;
     }
+
+    .select_box {
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        label {
+            font-size: 1.8rem;
+            display: block;
+            margin-right: 0.9rem;
+            font-weight: 600;
+        }
+        select {
+            font-size: 1.5rem;
+            border-radius: .4rem;
+            background: #fff;
+            border: .1rem solid #6e6b6b;
+            padding: .4rem .7rem;
+            cursor: pointer;
+        }
+    }
+
     .editor_container {
         .editor_box {
             outline: none;
@@ -40,6 +61,7 @@
             border: .2rem solid #6e6b6b;
             padding: .8rem;
             font-size: 1.8rem;
+            line-height: 1.8;
         }
         .error_box {
             flex: 1;
@@ -47,6 +69,7 @@
             padding: .8rem;
             font-size: 1.8rem;
             color: rgb(233, 20, 70);
+            line-height: 1.8;
         }
     }
 }
