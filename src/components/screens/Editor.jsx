@@ -11,7 +11,7 @@ function Editor() {
 
     const [languages] = useState([
         {value: 'cpp', text: 'C++'},
-        {value: 'python', text: 'Python'},
+        {value: 'py', text: 'Python'},
     ])
     const [selectedLanguage, setselectedLanguage] = useState(languages[0].value)
 
@@ -19,10 +19,7 @@ function Editor() {
         setselectedLanguage(event.target.value)
     }
 
-    console.log("selected",selectedLanguage)
-
     const codeSubmit = async () => {
-        console.log(selectedLanguage);
         const payload = {
             language: selectedLanguage,
             code
@@ -30,9 +27,8 @@ function Editor() {
 
         await axios.post('http://localhost:9000/api/v1/compiler/run/', payload)
             .then((response)=> {
-                // console.log(response)
-                response?.data?.error?.stdError ? 
-                    setError(response?.data?.error?.stdError) : setError('')
+                response?.data?.error?.codeError ? 
+                    setError(response?.data?.error?.codeError) : setError('')
 
                 response?.data?.output ?
                      setOutput(response?.data?.output) : setOutput('')
