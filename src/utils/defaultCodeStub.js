@@ -3,7 +3,7 @@ const stubs = {
 using namespace std;
 int main(){
     cout<<"Hello world"<<endl;
-    rreturn 0;
+    return 0;
 }`,
 
     py: `print('Hello world!')`
