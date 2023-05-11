@@ -15,6 +15,11 @@ function Editor() {
     const [taskError, setTaskError] = useState('')
     const [taskId, setTaskId] = useState('')
     const [taskStatus, setTaskStatus] = useState('')
+    const [taskDetails, setTaskDetails] = useState(null)
+
+    // const task execution details states
+    const [taskSubmited, setTaskSubmited] = useState('')
+    const [executionTime, setExecutionTime] = useState('')
 
     const [languages] = useState([
         {value: 'cpp', text: 'C++'},
@@ -40,6 +45,23 @@ function Editor() {
     }, [])
 
     useEffect(()=> {
+        console.log('task details',taskDetails)
+        if(taskDetails){
+            let { submittedAt, startedAt, completedAt } = taskDetails
+            const submitedTime = moment(submittedAt).toString()
+            setTaskSubmited(submitedTime)
+            // if(!startedAt || !completedAt){
+            //     setTaskSubmited(submitedTime)
+            // }
+    
+            const startTime = moment(startedAt)
+            const endTime = moment(completedAt)
+            const completedTime = endTime.diff(startTime, 'seconds', true)
+            setExecutionTime(completedTime)
+        }
+    }, [taskDetails])
+
+    useEffect(()=> {
         setCode(stubs[selectedLanguage])
     }, [selectedLanguage])
 
@@ -54,6 +76,7 @@ function Editor() {
             setTaskError('')
             setTaskId('')
             setTaskStatus('')
+            setTaskDetails(null)
 
             const { data } = await axios.post('http://localhost:9000/api/v1/compiler/run/', payload)
 
@@ -68,6 +91,8 @@ function Editor() {
                     console.log(data)
                     const { status, task } = data
                     console.log("Status",status)
+                    setTaskDetails(data?.task)
+                    console.log('hhegfh', taskDetails)
                     if(status){
                         setTaskStatus(task?.status)
 
@@ -133,22 +158,43 @@ function Editor() {
 
                 <h2 className='title'>Result</h2>
                 <div className="output_container">
-                    <div className="output_box">
+                    <div className="top">
                         <div className="info">
-                            {taskId && <div className='flex'>
-                                <span className='label'>Task id: </span>
-                                <span className='taskId'>{taskId}</span>
+                            {taskId && <div className='left'>
+                                <div className="flex">
+                                    <span className='label'>Task id: </span>
+                                    <span className='taskId'>{taskId}</span>
+                                </div>
                             </div>}
-                            {taskStatus && <div className='flex'>
-                                <span className='label'>Status: </span>
-                                <span className='taskstatus'>{taskStatus}</span>
+                            {taskStatus && <div className='right'>
+                                <div className="flex">
+                                    <span className='label'>Status: </span>
+                                    <span className='taskstatus' style={{
+                                        color: taskStatus === 'error' ? 'red' : 'rgb(5, 185, 92)',
+                                    }}>{taskStatus}</span>
+                                </div>
+                                {/* <div className="flex">
+                                    <span className='label'>Submited at: </span>
+                                    <span className='taskstatus'>{taskSubmited}</span>
+                                </div> */}
+                                <div className="flex">
+                                    <span className='label' >Execution time: </span>
+                                    <span className='taskstatus' style={{
+                                        color: taskStatus === 'error' ? 'red' : 'rgb(5, 185, 92)',
+                                    }}>{executionTime}</span>
+                                </div>
                             </div>}
                         </div>
-                        {taskoutput && taskoutput}
                     </div>
 
-                    <div className="error_box">
-                        {taskError && taskError}
+                    <div className="bottom_flex">
+                        <div className="output_box">
+                            {taskoutput && taskoutput}
+                        </div>
+
+                        <div className="error_box">
+                            {taskError && taskError}
+                        </div>
                     </div>
                 </div>
             </div>

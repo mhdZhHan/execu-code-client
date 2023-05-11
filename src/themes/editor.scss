@@ -1,5 +1,5 @@
 .container {
-    margin: 1% 0;
+    margin: 3% 0;
     .title {
         font-size: 2rem;
         color: #000;
@@ -74,47 +74,65 @@
     .output_container {
         margin-top: 1.5rem;
         display: flex;
-        .output_box {
-            flex: 1;
-            border: .2rem solid #6e6b6b;
-            padding: .8rem;
-            font-size: 1.8rem;
-            line-height: 1.8;
+        flex-direction: column;
+        align-items: center;
+        .top {
+            width: 100%;
+            align-self: flex-start;
+            margin-bottom: 1rem;
             .info {
+                width: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 border-bottom: .1rem solid dodgerblue;
-                margin-bottom: 2rem;
-                .flex {
+                .left, .right {
                     display: flex;
-                    align-items: center;
-                    span.label {
-                        font-size: 1.5rem;
-                        margin-right: .8rem;
-                        color: #6e6b6b;
-                    }
-                }
-                span {
-                    display: block;
-                    &.taskstatus {
-                        color: rgb(5, 185, 92);
-                        font-size: 1.5rem;
-                    }
-                    &.taskId {
-                        color: #909495;
-                        font-size: 1.5rem;
+                    .flex {
+                        margin-right: 1rem;
+                        display: flex;
+                        align-items: center;
+                        span {
+                            display: block;
+                            &.label {
+                                font-size: 1.5rem;
+                            margin-right: .8rem;
+                            color: #6e6b6b;
+                            }
+                            &.taskstatus {
+                                color: rgb(5, 185, 92);
+                                font-size: 1.5rem;
+                            }
+                            &.taskId {
+                                color: #909495;
+                                font-size: 1.5rem;
+                            }
+                        }
                     }
                 }
             }
         }
-        .error_box {
-            flex: 1;
-            border: .2rem solid #6e6b6b;
-            padding: .8rem;
-            font-size: 1.8rem;
-            color: rgb(233, 20, 70);
-            line-height: 1.8;
+        
+        .bottom_flex {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            .output_box {
+                flex: 1;
+                border: .2rem solid #6e6b6b;
+                padding: .8rem;
+                font-size: 1.8rem;
+                line-height: 1.8;
+            }
+    
+            .error_box {
+                flex: 1;
+                border: .2rem solid #6e6b6b;
+                padding: .8rem;
+                font-size: 1.8rem;
+                color: rgb(233, 20, 70);
+                line-height: 1.8;
+            }
         }
     }
 }
