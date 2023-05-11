@@ -62,6 +62,33 @@
             padding: .8rem;
             font-size: 1.8rem;
             line-height: 1.8;
+            .info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: .1rem solid dodgerblue;
+                margin-bottom: 2rem;
+                .flex {
+                    display: flex;
+                    align-items: center;
+                    span.label {
+                        font-size: 1.5rem;
+                        margin-right: .8rem;
+                        color: #6e6b6b;
+                    }
+                }
+                span {
+                    display: block;
+                    &.taskstatus {
+                        color: rgb(5, 185, 92);
+                        font-size: 1.5rem;
+                    }
+                    &.taskId {
+                        color: #909495;
+                        font-size: 1.5rem;
+                    }
+                }
+            }
         }
         .error_box {
             flex: 1;
