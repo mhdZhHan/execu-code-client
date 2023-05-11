@@ -29,6 +29,16 @@ function Editor() {
         setselectedLanguage(event.target.value)
     }
 
+    const setDefaultLanguage = () => {
+        localStorage.setItem('default_language', selectedLanguage)
+        console.log(`${selectedLanguage} is set as default language`)
+    }
+
+    useEffect(()=> {
+        let defaultLanguage = localStorage.getItem('default_language') || languages[0].value
+        setselectedLanguage(defaultLanguage)
+    }, [])
+
     useEffect(()=> {
         setCode(stubs[selectedLanguage])
     }, [selectedLanguage])
@@ -83,20 +93,26 @@ function Editor() {
         <div className="container">
             <div className="wrapper">
                 <h1 className="title">Execu Code Demo</h1>
-                <div className="select_box">
-                    <label htmlFor="for_select">Select language: </label>
-                    <select 
-                        id='for_select'
-                        value={selectedLanguage} 
-                        onChange={handleLanguageChange}
-                    >
-                        {languages.map((language, index ) => (
-                            <option 
-                                key={index} 
-                                value={language?.value}
-                            >{language?.text}</option>
-                        ))}
-                    </select>
+                <div className="head">
+                    <div className="select_box">
+                        <label htmlFor="for_select">Select language: </label>
+                        <select 
+                            id='for_select'
+                            value={selectedLanguage} 
+                            onChange={handleLanguageChange}
+                        >
+                            {languages.map((language, index ) => (
+                                <option 
+                                    key={index} 
+                                    value={language?.value}
+                                >{language?.text}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="button_box">
+                        <button onClick={setDefaultLanguage}>Set as default</button>
+                    </div>
                 </div>
 
                 <div className="editor_container">

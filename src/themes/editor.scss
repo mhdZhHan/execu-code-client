@@ -10,24 +10,42 @@
         color: #000;
         margin-bottom: 2rem;
     }
-
-    .select_box {
-        margin-bottom: 1.5rem;
+    .head {
         display: flex;
         align-items: center;
-        label {
-            font-size: 1.8rem;
-            display: block;
-            margin-right: 0.9rem;
-            font-weight: 600;
+        margin-bottom: 1.5rem;
+        .select_box {
+            display: flex;
+            align-items: center;
+            margin-right: 2rem;
+            label {
+                font-size: 1.8rem;
+                display: block;
+                margin-right: 0.9rem;
+                font-weight: 600;
+            }
+            select {
+                font-size: 1.5rem;
+                border-radius: .4rem;
+                background: #fff;
+                border: .1rem solid #6e6b6b;
+                padding: .4rem .7rem;
+                cursor: pointer;
+            }
         }
-        select {
-            font-size: 1.5rem;
-            border-radius: .4rem;
-            background: #fff;
-            border: .1rem solid #6e6b6b;
-            padding: .4rem .7rem;
-            cursor: pointer;
+
+        .button_box {
+            button {
+                border: none;
+                outline: none;
+                padding: .4rem .7rem;
+                border-radius: .4rem;
+                font-size: 1.8rem;
+                cursor: pointer;
+                color: #000;
+                background: rgb(252, 252, 55);
+                font-weight: 600;
+            }
         }
     }
 
@@ -42,7 +60,7 @@
         .execute_button {
             outline: none;
             border: none;
-            background: yellow;
+            background: rgb(252, 252, 55);
             padding: .8rem;
             font-size: 1.8rem;
             font-weight: 600;
