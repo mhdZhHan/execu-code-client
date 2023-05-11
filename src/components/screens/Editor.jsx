@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 
 // utils
 import { stubs } from '../../utils'
@@ -9,10 +10,9 @@ import '../../themes/editor.scss'
 
 function Editor() {
     const [code, setCode] = useState('')
-
-    const [output, setOutput] = useState('')
-    const [error, setError] = useState('')
     
+    const [taskoutput, setTaskOutput] = useState('')
+    const [taskError, setTaskError] = useState('')
     const [taskId, setTaskId] = useState('')
     const [taskStatus, setTaskStatus] = useState('')
 
@@ -50,8 +50,8 @@ function Editor() {
         }
 
         try {
-            setOutput('')
-            setError('')
+            setTaskOutput('')
+            setTaskError('')
             setTaskId('')
             setTaskStatus('')
 
@@ -69,11 +69,11 @@ function Editor() {
                     const { status, task } = data
                     console.log("Status",status)
                     if(status){
-                        const { status: taskstatus, output: taskOutput } = task
-                        setTaskStatus(taskstatus)
+                        setTaskStatus(task?.status)
 
-                        if(taskstatus === 'pending') return
-                        setOutput(taskOutput)
+                        if(task?.status === 'pending') return
+                        task?.status === 'success' && setTaskOutput(task?.output)
+                        task?.status === 'error' && setTaskError(task?.error)
 
                         clearInterval(getStatusInterval)
                     }
@@ -144,11 +144,11 @@ function Editor() {
                                 <span className='taskstatus'>{taskStatus}</span>
                             </div>}
                         </div>
-                        {output && output}
+                        {taskoutput && taskoutput}
                     </div>
 
                     <div className="error_box">
-                        {error && error}
+                        {taskError && taskError}
                     </div>
                 </div>
             </div>
